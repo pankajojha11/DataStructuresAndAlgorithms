@@ -72,5 +72,6 @@ public class TreeMain {
         System.out.println("--------------------------------");
         System.out.println(traversal.shortestPathFromRootToTargetNotToVisitTwice(root, 5));
         System.out.println("--------------------------------");
+        System.out.println("Thanks");
     }
 }
