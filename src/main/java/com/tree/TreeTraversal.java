@@ -452,8 +452,9 @@ public class TreeTraversal {
     }
 
     int kthSmallestInBST(TreeNode root, int k) {
-        if (root == null)
+        if (root == null) {
             return 0;
+        }
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
@@ -554,6 +555,59 @@ public class TreeTraversal {
         return -1;
     }
 
+    List<Integer> distanceK(TreeNode root, int k, TreeNode target) {
+        if (k == 0)
+            return List.of(target.data);
+        Map<TreeNode, TreeNode> parentTrack = new HashMap<>();
+        markParents(root, parentTrack, root);
+        Map<TreeNode, Boolean> visited = new HashMap<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(target); // first add the target node to queue
+        visited.put(target, true);
+        int curLevel = 0;
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode cur = queue.poll();
+                if (cur.left != null && visited.get(cur.left) == null) {
+                    queue.add(cur.left);
+                    visited.put(cur.left, true);
+                }
+                if (cur.right != null && visited.get(cur.right) == null) {
+                    queue.add(cur.right);
+                    visited.put(cur.right, true);
+                }
+                if (parentTrack.get(cur) != null && visited.get(parentTrack.get(cur)) == null) {
+                    queue.add(parentTrack.get(cur));
+                    visited.put(parentTrack.get(cur), true);
+                }
+            }
+            curLevel++;
+            if (curLevel == k)
+                break;
+        }
+        List<Integer> result = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            result.add(queue.poll().data);
+        }
+        return result;
+    }
+
+    void markParents(TreeNode root, Map<TreeNode, TreeNode> parentTrack, TreeNode target) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            if (cur.left != null) {
+                parentTrack.put(cur.left, cur);
+                queue.add(cur.left);
+            }
+            if (cur.right != null) {
+                parentTrack.put(cur.right, cur);
+                queue.add(cur.right);
+            }
+        }
+    }
 }
 
 

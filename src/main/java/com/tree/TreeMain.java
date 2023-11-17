@@ -72,7 +72,8 @@ public class TreeMain {
         System.out.println("--------------------------------");
         System.out.println(traversal.shortestPathFromRootToTargetNotToVisitTwice(root, 5));
         System.out.println("--------------------------------");
-        System.out.println("Thanks");
-        System.out.println("DSA");
+        System.out.println("--------------------------------");
+        System.out.println(traversal.distanceK(root, 0, root.left) + " root.left = target = 2 so finding distance of 2 from 2");
+        System.out.println("--------------------------------");
     }
 }
