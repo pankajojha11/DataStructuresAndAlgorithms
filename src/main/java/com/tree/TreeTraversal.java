@@ -608,6 +608,58 @@ public class TreeTraversal {
             }
         }
     }
+
+    int openLock(String[] deadends, String target) {
+        if (target == null || target.length() == 0)
+            return -1;
+        Set<String> visited = new HashSet<>();
+        Set<String> deadLocks = new HashSet<>(Arrays.asList(deadends));
+        if (deadLocks.contains("0000"))
+            return -1;
+        Queue<String> queue = new LinkedList<>();
+        queue.add("0000");
+        visited.add("0000");
+        int steps = 0;
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                String cur = queue.poll();
+                if (cur.equals(target))
+                    return steps;
+                for (int j = 0; j < cur.length(); j++) {
+                    int digit = cur.charAt(j) - '0';
+                    // forward direction
+                    int forward = (digit + 1) % 10;
+                    String newState = cur.substring(0, j) + forward + cur.substring(j + 1);
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    List<List<Integer>> nAryLevelOrderTraversalListOfList(TreeNodeGenericNary root) {
+        List<List<Integer>> levelOrder = new ArrayList<>();
+        if (root == null)
+            return levelOrder;
+        Queue<TreeNodeGenericNary> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> listToBeAdded = new ArrayList<>();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNodeGenericNary cur = queue.poll();
+                listToBeAdded.add(cur.data);
+                if (!cur.children.isEmpty()) {
+                    for (TreeNodeGenericNary gen : cur.children) {
+                        queue.add(gen);
+                    }
+                }
+            }
+            levelOrder.add(listToBeAdded);
+        }
+        return levelOrder;
+    }
 }
 
 

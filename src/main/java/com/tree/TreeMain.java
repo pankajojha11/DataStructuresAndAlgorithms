@@ -12,6 +12,15 @@ public class TreeMain {
         root.left.right.left = new TreeNode(6);
         root.left.right.right = new TreeNode(7);
 
+        TreeNodeGenericNary root1 = new TreeNodeGenericNary(10);
+        root1.children.add(new TreeNodeGenericNary(2));
+        root1.children.add(new TreeNodeGenericNary(34));
+        root1.children.add(new TreeNodeGenericNary(56));
+        root1.children.add(new TreeNodeGenericNary(100));
+        root1.children.get(0).children.add(new TreeNodeGenericNary(77));
+        root1.children.get(0).children.add(new TreeNodeGenericNary(88));
+        root1.children.get(2).children.add(new TreeNodeGenericNary(1));
+
         TreeTraversal traversal = new TreeTraversal();
         traversal.inOrder(root);
         System.out.println("inOrder Recursive");
@@ -72,8 +81,9 @@ public class TreeMain {
         System.out.println("--------------------------------");
         System.out.println(traversal.shortestPathFromRootToTargetNotToVisitTwice(root, 5));
         System.out.println("--------------------------------");
-        System.out.println("--------------------------------");
         System.out.println(traversal.distanceK(root, 0, root.left) + " root.left = target = 2 so finding distance of 2 from 2");
+        System.out.println("--------------------------------");
+        System.out.println(traversal.nAryLevelOrderTraversalListOfList(root1));
         System.out.println("--------------------------------");
     }
 }
