@@ -660,6 +660,106 @@ public class TreeTraversal {
         }
         return levelOrder;
     }
+
+    boolean hasPathSum1(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<Integer> sumPath = new Stack<>();
+        stack.push(root);
+        sumPath.push(root.data);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            int curSum = sumPath.pop();
+            if (cur.left == null && cur.right == null && curSum == sum)
+                return true;
+            if (cur.right != null) {
+                stack.push(cur.right);
+                sumPath.push(cur.right.data + curSum);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+                sumPath.push(cur.left.data + curSum);
+            }
+        }
+        return false;
+    }
+
+    boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> sumPath = new LinkedList<>();
+        queue.add(root);
+        sumPath.add(root.data);
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            int curSum = sumPath.poll();
+            if (cur.left == null && cur.right == null && curSum == sum)
+                return true;
+            if (cur.left != null) {
+                queue.add(cur.left);
+                sumPath.add(cur.left.data + curSum);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+                sumPath.add(cur.right.data + curSum);
+            }
+        }
+        return false;
+    }
+
+    int countOfPathSum(TreeNode root, int sum) {
+        if (root == null)
+            return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> sumPath = new LinkedList<>();
+        queue.add(root);
+        sumPath.add(root.data);
+        int count = 0;
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            int curSum = sumPath.poll();
+            if (cur.left == null && cur.right == null && curSum == sum)
+                count++;
+            if (cur.left != null) {
+                queue.add(cur.left);
+                sumPath.add(cur.left.data + curSum);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+                sumPath.add(cur.right.data + curSum);
+            }
+        }
+        return count;
+    }
+
+    List<List<Integer>> printPathSum(TreeNode root, int sum) {
+        List<List<Integer>> levelOrder = new ArrayList<>();
+        if (root == null)
+            return levelOrder;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> sumPath = new LinkedList<>();
+        queue.add(root);
+        sumPath.add(root.data);
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            int curSum = sumPath.poll();
+            List<Integer> list = new ArrayList<>();
+            list.add(cur.data);
+            if (cur.left == null && cur.right == null && curSum == sum)
+                list.add(cur.data);
+            if (cur.left != null) {
+                queue.add(cur.left);
+                sumPath.add(cur.left.data + curSum);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+                sumPath.add(cur.right.data + curSum);
+            }
+        }
+        return levelOrder;
+    }
 }
 
 
