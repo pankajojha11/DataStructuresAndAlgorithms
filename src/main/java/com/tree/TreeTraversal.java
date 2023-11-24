@@ -88,16 +88,6 @@ public class TreeTraversal {
                     cur = cur.right;
                 }
             }
-//            temp = stack.peek().right;
-//            if (temp == null) {
-//                temp = stack.pop();
-//                postOrder.add(temp.data);
-//                while (!stack.isEmpty() && temp == stack.peek().right) {
-//                    temp = stack.pop();
-//                    postOrder.add(temp.data);
-//                }
-//            } else
-//                cur = temp;
         }
         return postOrder;
     }
@@ -250,9 +240,9 @@ public class TreeTraversal {
             return averageList;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        float sum = 0;
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
+            float sum = 0;
             for (int i = 0; i < levelSize; i++) {
                 TreeNode cur = queue.poll();
                 sum += cur.data;
@@ -262,7 +252,6 @@ public class TreeTraversal {
                     queue.add(cur.right);
             }
             averageList.add(sum / levelSize);
-            sum = 0;
         }
         return averageList;
     }
@@ -360,6 +349,15 @@ public class TreeTraversal {
         return rightViewList;
     }
 
+    int height(TreeNode root) {
+        if (root == null)
+            return 0;
+        int lh = height(root.left);
+        int rh = height(root.right);
+        int result = lh > rh ? lh : rh;
+        return result + 1;
+    }
+
     int heightOfBinaryTree(TreeNode root) {
         if (root == null) {
             return 0;
@@ -381,6 +379,42 @@ public class TreeTraversal {
             height++; // Increment height after processing a level
         }
         return height;
+    }
+
+    int nthNode(TreeNode root, int n) {
+        if (root == null)
+            return 0;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            if (--n == 0)
+                return cur.data;
+            cur = cur.right;
+        }
+        return -1;
+    }
+
+    int inOrderSuccessorOfBST(TreeNode root, int p) {
+        if (root == null)
+            return 0;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            if (p < cur.data)
+                return cur.data;
+            cur = cur.right;
+        }
+        return -1;
     }
 
     List<Integer> leftViewOfBinaryTree(TreeNode root) {
@@ -468,6 +502,31 @@ public class TreeTraversal {
             cur = cur.right;
         }
         return -1;
+    }
+
+    // total numbers of nodes
+    int size(TreeNode root) {
+        // base conditon
+        if (root == null)
+            return 0;
+        return size(root.left) + size(root.right) + 1;
+    }
+
+    int sizeIterative(TreeNode root) {
+        if (root == null)
+            return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int size = 0;
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            size++;
+            if (cur.left != null)
+                queue.add(cur.left);
+            if (cur.right != null)
+                queue.add(cur.right);
+        }
+        return size;
     }
 
     List<Integer> findAllLeafNodes(TreeNode root) {
