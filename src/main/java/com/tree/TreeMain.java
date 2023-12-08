@@ -67,7 +67,7 @@ public class TreeMain {
         System.out.println("--------------------------------");
         System.out.println("nth Node of a binary tree : " + traversal.nthNode(root, 10));
         System.out.println("--------------------------------");
-        System.out.println("InOrder successor of Binary Search Tree : "+traversal.inOrderSuccessorOfBST(rootBST, 5));
+        System.out.println("InOrder successor of Binary Search Tree : " + traversal.inOrderSuccessorOfBST(rootBST, 5));
         System.out.println("--------------------------------");
         System.out.println(traversal.findAllLeafNodes(root) + " find all leaf nodes using level order");
         System.out.println("--------------------------------");
@@ -119,6 +119,8 @@ public class TreeMain {
         System.out.println(traversal.sumOfPathNumbers(root));
         System.out.println("--------------------------------");
         System.out.println(traversal.findPathSequence(root, new int[]{1, 2, 5, 7}));
+        System.out.println("--------------------------------");
+        System.out.println(traversal.findMaximumPathSum(root) + " Tree diameter");
         System.out.println("--------------------------------");
     }
 }

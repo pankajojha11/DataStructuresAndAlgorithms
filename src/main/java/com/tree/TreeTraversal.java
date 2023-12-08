@@ -588,10 +588,11 @@ public class TreeTraversal {
         return -1;
     }
 
+    // to never visit the node twice use either hashset or map
     int shortestPathFromRootToTargetNotToVisitTwice(TreeNode root, int target) {
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
         Set<TreeNode> visited = new HashSet<>(); // stores all the nodes that we have visited
+        queue.add(root);
         visited.add(root);
         int step = 0;
         while (!queue.isEmpty()) {
@@ -912,6 +913,17 @@ public class TreeTraversal {
             cur = cur.right;
         }
         return pre;
+    }
+
+    int findMaximumPathSum(TreeNode root) {
+        if (root == null)
+            return 0;
+        int maxPathSumFromLeft = findMaximumPathSum(root.left);
+        int maxPathSumFromRight = findMaximumPathSum(root.right);
+        // ignore paths with negative nums
+        maxPathSumFromLeft = Math.max(maxPathSumFromLeft, 0);
+        maxPathSumFromRight = Math.max(maxPathSumFromRight, 0);
+        return Math.max(maxPathSumFromLeft, maxPathSumFromRight) + root.data;
     }
 }
 
