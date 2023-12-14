@@ -5,36 +5,25 @@ import java.util.PriorityQueue;
 
 public class KthElement {
 
-    private static int largestElement(int[] arr, int k) {
-        // min heap
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for (int i = 0; i < k; i++) {
-            minHeap.add(arr[i]);
-        }
-        for (int i = k; i < arr.length; i++) {
-            if (minHeap.peek() < arr[i]) {
-                minHeap.remove();
-                minHeap.add(arr[i]);
-            }
-        }
-        return minHeap.peek();
-    }
-
     private static int smallestElement(int[] arr, int k) {
-        //  for max heap pass comparator
+        // form max heap pass comparator
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-        // add upto kth element
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < arr.length; i++) {
             maxHeap.add(arr[i]);
-        }
-        // check if the value is greater then remove and add
-        for (int i = k; i < arr.length; i++) {
-            if (maxHeap.peek() > arr[i]) {
-                maxHeap.remove();
-                maxHeap.add(arr[i]);
-            }
+            if (maxHeap.size() > k) // if size > k then take out element
+                maxHeap.poll();
         }
         return maxHeap.peek();
+    }
+
+    private static int largestElement(int[] arr, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int i = 0; i < arr.length; i++) {
+            minHeap.add(arr[i]);
+            if (minHeap.size() > k)
+                minHeap.poll();
+        }
+        return minHeap.peek();
     }
 
 

@@ -4,17 +4,12 @@ import java.util.PriorityQueue;
 
 public class KthLargestElementInArray {
 
-    private static void largestElement(int[] arr, int k) {
-        // min heap
+    private static void KthLargestElement(int[] arr, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < arr.length; i++) {
             minHeap.add(arr[i]);
-        }
-        for (int i = k; i < arr.length; i++) {
-            if (minHeap.peek() < arr[i]) {
-                minHeap.remove();
-                minHeap.add(arr[i]);
-            }
+            if (minHeap.size() > k)
+                minHeap.poll();
         }
         while (minHeap.size() > 0) {
             System.out.println(minHeap.peek());
@@ -26,6 +21,6 @@ public class KthLargestElementInArray {
         int[] arr = {5, 4, 1, 2, 3, 6};
         int k = 3;
         // k and smallest or largets ---> Heap ---> priority queue by default in java minheap
-        largestElement(arr, k); // 6 5 4
+        KthLargestElement(arr, k); // 6 5 4
     }
 }
