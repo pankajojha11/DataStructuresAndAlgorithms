@@ -15,17 +15,18 @@ public class FirstNegativeNumberInEveryWindowOfSizeK {
             // calculation
             if (arr[j] < 0)
                 negativeNumberList.add(arr[j]);
-            else if (j - i + 1 < k)
+            if (j - i + 1 < k)
                 j++;
             else if (j - i + 1 == k) {
                 // ans from calculation
-                if (negativeNumberList.size() == 0)
+                if (negativeNumberList.isEmpty())
                     responseList.add(0);
-                else
+                else {
                     responseList.add(negativeNumberList.get(0));
-                // slide the window
-                if (arr[i] == negativeNumberList.get(0))
-                    negativeNumberList.remove(0);
+                    // slide the window
+                    if (arr[i] == negativeNumberList.get(0))
+                        negativeNumberList.remove(0);
+                }
                 i++;
                 j++;
             }

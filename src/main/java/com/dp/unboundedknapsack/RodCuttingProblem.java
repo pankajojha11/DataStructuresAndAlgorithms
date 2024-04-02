@@ -14,6 +14,8 @@ public class RodCuttingProblem {
         for (int i = 1; i < n + 1; i++) {
             for (int j = 1; j < N + 1; j++) {
                 if (length[i - 1] <= j)
+                    // unbounded knapsack t[i] because the item can be taken again
+                    // 0-1 knapsack t[i-1]
                     t[i][j] = Math.max(t[i - 1][j], price[i - 1] + t[i][j - length[i - 1]]);
                 else
                     t[i][j] = t[i - 1][j];

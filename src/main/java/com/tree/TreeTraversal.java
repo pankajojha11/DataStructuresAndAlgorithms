@@ -619,7 +619,7 @@ public class TreeTraversal {
         if (k == 0)
             return List.of(target.data);
         Map<TreeNode, TreeNode> parentTrack = new HashMap<>();
-        markParents(root, parentTrack, root);
+        markParents(root, parentTrack);
         Map<TreeNode, Boolean> visited = new HashMap<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(target); // first add the target node to queue
@@ -653,7 +653,7 @@ public class TreeTraversal {
         return result;
     }
 
-    void markParents(TreeNode root, Map<TreeNode, TreeNode> parentTrack, TreeNode target) {
+    void markParents(TreeNode root, Map<TreeNode, TreeNode> parentTrack) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {

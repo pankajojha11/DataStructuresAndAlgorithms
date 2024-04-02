@@ -93,7 +93,7 @@ public class TreeMain {
         System.out.println("--------------------------------");
         traversal.connectSuccessorLevel(root);
         System.out.println("--------------------------------");
-        System.out.println(traversal.shortestPathFromRootToTarget(root, 5));
+        System.out.println("shortest path from root to target " + traversal.shortestPathFromRootToTarget(root, 5));
         System.out.println("--------------------------------");
         System.out.println(traversal.shortestPathFromRootToTargetNotToVisitTwice(root, 5));
         System.out.println("--------------------------------");

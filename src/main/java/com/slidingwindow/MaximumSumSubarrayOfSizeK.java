@@ -23,10 +23,24 @@ public class MaximumSumSubarrayOfSizeK {
         return maxSum;
     }
 
+    private static int maxSumSubArrayOfSizeK(int[] arr, int k) {
+        int sum = 0;
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length - k; i++) {
+            for (int j = i; j < i + k; j++) {
+                sum = sum + arr[j];
+            }
+            ans = Math.max(ans, sum);
+            sum = 0;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1, 2, 5, 0, 8, 3};
         int k = 3;
         System.out.println(maximumSumSubarrayOfSizeK(arr, k));
+        System.out.println(maxSumSubArrayOfSizeK(arr, k));
     }
 
 }

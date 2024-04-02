@@ -4,7 +4,7 @@ public class FindElementInRotatedSortedArray {
 
     static int solve(int[] arr, int element) {
         int index = findMinimumElement(arr);
-        return Math.max(binarySearch(arr, element, 0, index - 1), binarySearch(arr, element, index, index - 1));
+        return Math.max(binarySearch(arr, element, 0, index - 1), binarySearch(arr, element, index, arr.length - 1));
     }
 
     // finding the minimum element  is equals to no of rotations of the array
@@ -41,7 +41,7 @@ public class FindElementInRotatedSortedArray {
 
     public static void main(String[] args) {
         int[] arr = {7, 9, 11, 12, 5, 6};
-        int element = 11;
+        int element = 5;
         System.out.println(solve(arr, element));
     }
 

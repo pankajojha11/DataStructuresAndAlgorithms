@@ -21,7 +21,7 @@ public class KnapsackByTopdown {
                     // V[i,w] = max {P[i] + V[i - 1, w - w[i]], V[i - 1, w]}
 //                   t[n][W] = Math.max(val[n - 1] + knapSack(wt, val, W - wt[n - 1], n - 1), knapSack(wt, val, W, n - 1));
                     t[i][j] = Math.max(val[i - 1] + t[i - 1][j - wt[i - 1]], t[i - 1][j]);
-                else if (wt[i - 1] > W)
+                else if (wt[i - 1] > j)
                     t[i][j] = t[i - 1][j];
             }
         }

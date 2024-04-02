@@ -32,7 +32,6 @@ public class CountNumberOfSubsetWithDifference {
         return t[n][sum];
     }
 
-
     public static void main(String[] args) {
         int arr[] = new int[]{1, 1, 2, 3};
         int diff = 1;
