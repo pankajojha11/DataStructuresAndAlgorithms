@@ -31,5 +31,6 @@ public class ReverseString {
         System.out.println(reverseWordByTwoPointer(str));
 //        reverseWord(str);
         System.out.println("Hello World");
+        System.out.println("Java");
     }
 }
