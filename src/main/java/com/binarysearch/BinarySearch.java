@@ -16,6 +16,7 @@ public class BinarySearch {
             else
                 start = mid + 1;
         }
+        // testing for git commands
         return -1;
     }
 
