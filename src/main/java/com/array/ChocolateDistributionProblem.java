@@ -21,6 +21,7 @@ public class ChocolateDistributionProblem {
         int m = 3;
         System.out.println(findMinDiff(arr, m));
         System.out.println("Hello World");
+        System.out.println("Hello world from testingFromIDENew");
     }
 
 
