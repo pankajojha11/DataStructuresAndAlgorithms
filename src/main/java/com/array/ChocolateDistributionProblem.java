@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class ChocolateDistributionProblem {
     private static int findMinDiff(int[] arr, int m) {
+        //  code changes for testing version control
         int ans = Integer.MAX_VALUE;
         Arrays.sort(arr);
         for (int i = 0; i <= arr.length - m; i++) {
