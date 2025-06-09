@@ -6,6 +6,7 @@ public class ChocolateDistributionProblem {
     private static int findMinDiff(int[] arr, int m) {
         //  code changes for testing version control
         // from nikibranch
+        // example merge conflict
         int ans = Integer.MAX_VALUE;
         Arrays.sort(arr);
         for (int i = 0; i <= arr.length - m; i++) {
@@ -22,6 +23,7 @@ public class ChocolateDistributionProblem {
         int[] arr = {7, 3, 2, 4, 9, 12, 56};
         int m = 3;
         System.out.println(findMinDiff(arr, m));
+        System.out.println("Hello World");
     }
 
 
